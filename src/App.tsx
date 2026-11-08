@@ -237,17 +237,17 @@ function App() {
   const currentTopology = activeTab === 'physical' ? physicalTopology : virtualTopology;
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-900">
       {/* Header */}
-      <header className="bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
-        <div className="container mx-auto px-6 py-5">
+      <header className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg shadow-xl border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-xl shadow-lg">
                 <GitCompare className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Wireless Digital Twin
                 </h1>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -256,10 +256,10 @@ function App() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+              <span className={`px-4 py-2 rounded-full text-sm font-semibold shadow-md ${
                 isRunning 
-                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
-                  : 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+                  ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white' 
+                  : 'bg-gradient-to-r from-gray-400 to-gray-500 text-white'
               }`}>
                 {isRunning ? 'Running' : 'Stopped'}
               </span>
@@ -270,56 +270,56 @@ function App() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 gap-8">
           {/* Network Topology Section - Full Width */}
           <div className="space-y-6">
             {/* Tab Navigation */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-              <div className="flex gap-2">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+              <div className="flex gap-3">
                 <button
                   onClick={() => setActiveTab('physical')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg ${
                     activeTab === 'physical'
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-blue-500/50'
+                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
                   }`}
                 >
-                  <Activity className="w-4 h-4 inline mr-2" />
+                  <Activity className="w-5 h-5 inline mr-2" />
                   Physical Network
                 </button>
                 <button
                   onClick={() => setActiveTab('virtual')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg ${
                     activeTab === 'virtual'
-                      ? 'bg-purple-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-purple-500/50'
+                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
                   }`}
                 >
-                  <GitCompare className="w-4 h-4 inline mr-2" />
+                  <GitCompare className="w-5 h-5 inline mr-2" />
                   Virtual Twin
                 </button>
                 <button
                   onClick={() => setActiveTab('comparison')}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all ${
+                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg ${
                     activeTab === 'comparison'
-                      ? 'bg-green-500 text-white'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/50'
+                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
                   }`}
                 >
-                  <BarChart3 className="w-4 h-4 inline mr-2" />
+                  <BarChart3 className="w-5 h-5 inline mr-2" />
                   Comparison
                 </button>
               </div>
             </div>
 
             {/* Network Topology Visualization */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+              <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
                 {activeTab === 'physical' ? 'Physical Network Topology' : 
                  activeTab === 'virtual' ? 'Virtual Twin Topology' : 'Network Comparison'}
               </h2>
               {activeTab !== 'comparison' ? (
-                <div className="w-full overflow-hidden rounded-lg">
+                <div className="w-full overflow-hidden rounded-xl shadow-inner">
                   <NetworkTopologyComponent
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
@@ -328,10 +328,10 @@ function App() {
                   />
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="min-w-0">
-                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Physical</h3>
-                    <div className="w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-base font-semibold text-gray-700 dark:text-gray-300 mb-3">Physical</h3>
+                    <div className="w-full overflow-hidden rounded-xl shadow-inner border border-gray-200 dark:border-gray-700">
                       <NetworkTopologyComponent
                         topology={physicalTopology}
                         onNodeClick={setSelectedNode}
@@ -341,8 +341,8 @@ function App() {
                     </div>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Virtual</h3>
-                    <div className="w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-base font-semibold text-gray-700 dark:text-gray-300 mb-3">Virtual</h3>
+                    <div className="w-full overflow-hidden rounded-xl shadow-inner border border-gray-200 dark:border-gray-700">
                       <NetworkTopologyComponent
                         topology={virtualTopology}
                         onNodeClick={setSelectedNode}
@@ -357,7 +357,7 @@ function App() {
           </div>
 
           {/* Control Panel - Full Width at Bottom */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
             <ControlPanel
               config={config}
               onConfigChange={handleConfigChange}
@@ -375,24 +375,24 @@ function App() {
           </div>
 
           {/* Metrics Dashboard - Full Width */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
               Network Metrics
             </h2>
             <MetricsDashboard metrics={currentTopology.metrics} syncStats={syncStats} />
           </div>
 
           {/* Event Log - Full Width */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
               Event Log
             </h2>
             <EventLog events={digitalTwin.getPhysicalSimulation().getEventLog()} />
           </div>
 
           {/* What-If Scenarios - Full Width */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
               What-If Scenarios
             </h2>
             <WhatIfScenario
@@ -402,8 +402,8 @@ function App() {
           </div>
 
           {/* Export Panel - Full Width */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
               Export Data
             </h2>
             <ExportPanel
@@ -416,52 +416,52 @@ function App() {
 
           {/* Selected Node Details - Full Width */}
           {selectedNode && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+              <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
                 Node Details: {selectedNode.id}
               </h2>
               <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Energy:</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Energy:</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">
                     {selectedNode.energy.toFixed(1)}%
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Status:</span>
-                  <span className={`text-sm font-medium ${
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Status:</span>
+                  <span className={`text-sm font-bold ${
                     selectedNode.isActive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
                   }`}>
                     {selectedNode.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Gateway:</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Gateway:</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">
                     {selectedNode.isGateway ? 'Yes' : 'No'}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Neighbors:</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Neighbors:</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">
                     {selectedNode.neighbors.length}
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Position:</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Position:</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">
                     ({selectedNode.position.x.toFixed(0)}, {selectedNode.position.y.toFixed(0)})
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">TX Power:</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">TX Power:</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">
                     {selectedNode.transmissionPower} dBm
                   </span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">RX Sensitivity:</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">RX Sensitivity:</span>
+                  <span className="text-sm font-bold text-gray-900 dark:text-white">
                     {selectedNode.receptionSensitivity} dBm
                   </span>
                 </div>

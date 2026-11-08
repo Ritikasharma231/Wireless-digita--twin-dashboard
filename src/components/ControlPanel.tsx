@@ -116,7 +116,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-3">
           Simulation Configuration
         </h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Routing Protocol
@@ -355,7 +355,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
 
               {rlAgentStats && (
                 <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 text-xs">
-                  <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
                     <div>
                       <span className="text-gray-500 dark:text-gray-400">Transitions:</span>
                       <span className="ml-2 font-mono">{rlAgentStats.transitionCount}</span>

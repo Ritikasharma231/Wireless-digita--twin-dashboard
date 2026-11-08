@@ -64,6 +64,6 @@ backend/checkpoints/
 Thumbs.db
 .DS_Store
 
-# Devin
+# AI tools directories
 .devin/
 .agents/

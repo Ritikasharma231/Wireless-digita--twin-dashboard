@@ -306,31 +306,37 @@ function App() {
                  activeTab === 'virtual' ? 'Virtual Twin Topology' : 'Network Comparison'}
               </h2>
               {activeTab !== 'comparison' ? (
-                <NetworkTopologyComponent
-                  topology={currentTopology}
-                  onNodeClick={setSelectedNode}
-                  width={800}
-                  height={500}
-                />
+                <div className="w-full overflow-hidden rounded-lg">
+                  <NetworkTopologyComponent
+                    topology={currentTopology}
+                    onNodeClick={setSelectedNode}
+                    width={800}
+                    height={500}
+                  />
+                </div>
               ) : (
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="min-w-0">
                     <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Physical</h3>
-                    <NetworkTopologyComponent
-                      topology={physicalTopology}
-                      onNodeClick={setSelectedNode}
-                      width={400}
-                      height={400}
-                    />
+                    <div className="w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                      <NetworkTopologyComponent
+                        topology={physicalTopology}
+                        onNodeClick={setSelectedNode}
+                        width={400}
+                        height={400}
+                      />
+                    </div>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Virtual</h3>
-                    <NetworkTopologyComponent
-                      topology={virtualTopology}
-                      onNodeClick={setSelectedNode}
-                      width={400}
-                      height={400}
-                    />
+                    <div className="w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                      <NetworkTopologyComponent
+                        topology={virtualTopology}
+                        onNodeClick={setSelectedNode}
+                        width={400}
+                        height={400}
+                      />
+                    </div>
                   </div>
                 </div>
               )}

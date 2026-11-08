@@ -39,8 +39,10 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
 
   useEffect(() => {
     if (graphRef.current) {
-      graphRef.current.d3Force('charge').strength(-200);
-      graphRef.current.d3Force('link').distance(100);
+      // Adjust forces for better containment
+      graphRef.current.d3Force('charge').strength(-150);
+      graphRef.current.d3Force('link').distance(80);
+      graphRef.current.d3Force('center', null); // Remove center force to prevent centering issues
     }
   }, []);
 
@@ -70,12 +72,17 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
   };
 
   return (
-    <div className="network-topology">
+    <div className="network-topology w-full h-full min-h-[400px] relative overflow-hidden rounded-lg">
       <ForceGraph2D
         ref={graphRef}
         graphData={{ nodes, links }}
         width={width}
         height={height}
+        enableNodeDrag={true}
+        enableZoomInteraction={true}
+        enablePanInteraction={true}
+        d3AlphaDecay={0.02}
+        d3VelocityDecay={0.1}
         nodeCanvasObject={(node, ctx, globalScale) => {
           const size = getNodeSize(node) / globalScale;
           ctx.beginPath();
@@ -129,11 +136,6 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
         }}
         nodeLabel="id"
         linkLabel={(link) => `RSSI: ${link.rssi.toFixed(1)} dBm`}
-        enableNodeDrag={true}
-        enableZoomInteraction={true}
-        enablePanInteraction={true}
-        d3AlphaDecay={0.02}
-        d3VelocityDecay={0.1}
       />
     </div>
   );

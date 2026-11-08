@@ -257,9 +257,9 @@ function App() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left Column - Network Topology */}
-          <div className="lg:col-span-8 space-y-6">
+        <div className="grid grid-cols-1 gap-6">
+          {/* Network Topology Section - Full Width */}
+          <div className="space-y-6">
             {/* Tab Navigation */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
               <div className="flex gap-2">
@@ -310,8 +310,8 @@ function App() {
                   <NetworkTopologyComponent
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
-                    width={800}
-                    height={500}
+                    width={1200}
+                    height={600}
                   />
                 </div>
               ) : (
@@ -322,7 +322,7 @@ function App() {
                       <NetworkTopologyComponent
                         topology={physicalTopology}
                         onNodeClick={setSelectedNode}
-                        width={400}
+                        width={600}
                         height={400}
                       />
                     </div>
@@ -333,7 +333,7 @@ function App() {
                       <NetworkTopologyComponent
                         topology={virtualTopology}
                         onNodeClick={setSelectedNode}
-                        width={400}
+                        width={600}
                         height={400}
                       />
                     </div>
@@ -341,24 +341,10 @@ function App() {
                 </div>
               )}
             </div>
-
-            {/* Metrics Dashboard */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-                Network Metrics
-              </h2>
-              <MetricsDashboard metrics={currentTopology.metrics} syncStats={syncStats} />
-            </div>
-
-            {/* Event Log */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
-              <EventLog events={digitalTwin.getPhysicalSimulation().getEventLog()} />
-            </div>
           </div>
 
-          {/* Right Column - Controls */}
-          <div className="lg:col-span-4 space-y-6">
-            {/* Control Panel */}
+          {/* Control Panel - Full Width at Bottom */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
             <ControlPanel
               config={config}
               onConfigChange={handleConfigChange}
@@ -373,76 +359,102 @@ function App() {
               onTrainRL={handleTrainRL}
               rlAgentStats={rlAgentStats}
             />
+          </div>
 
-            {/* What-If Scenarios */}
+          {/* Metrics Dashboard - Full Width */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+              Network Metrics
+            </h2>
+            <MetricsDashboard metrics={currentTopology.metrics} syncStats={syncStats} />
+          </div>
+
+          {/* Event Log - Full Width */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+              Event Log
+            </h2>
+            <EventLog events={digitalTwin.getPhysicalSimulation().getEventLog()} />
+          </div>
+
+          {/* What-If Scenarios - Full Width */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+              What-If Scenarios
+            </h2>
             <WhatIfScenario
               onRunScenario={handleRunScenario}
               config={config}
             />
+          </div>
 
-            {/* Export Panel */}
+          {/* Export Panel - Full Width */}
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-5 border border-gray-200 dark:border-gray-700">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+              Export Data
+            </h2>
             <ExportPanel
               topology={currentTopology}
               metrics={currentTopology.metrics}
               events={digitalTwin.getPhysicalSimulation().getEventLog()}
               metricsHistory={metricsHistory}
             />
+          </div>
 
-            {/* Selected Node Details */}
-            {selectedNode && (
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-                  Node Details: {selectedNode.id}
-                </h2>
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Energy:</span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {selectedNode.energy.toFixed(1)}%
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Status:</span>
-                    <span className={`text-sm font-medium ${
-                      selectedNode.isActive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                    }`}>
-                      {selectedNode.isActive ? 'Active' : 'Inactive'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Gateway:</span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {selectedNode.isGateway ? 'Yes' : 'No'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Neighbors:</span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {selectedNode.neighbors.length}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Position:</span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      ({selectedNode.position.x.toFixed(0)}, {selectedNode.position.y.toFixed(0)})
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">TX Power:</span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {selectedNode.transmissionPower} dBm
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm text-gray-600 dark:text-gray-400">RX Sensitivity:</span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {selectedNode.receptionSensitivity} dBm
-                    </span>
-                  </div>
+          {/* Selected Node Details - Full Width */}
+          {selectedNode && (
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-200 dark:border-gray-700">
+              <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                Node Details: {selectedNode.id}
+              </h2>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Energy:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    {selectedNode.energy.toFixed(1)}%
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Status:</span>
+                  <span className={`text-sm font-medium ${
+                    selectedNode.isActive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                  }`}>
+                    {selectedNode.isActive ? 'Active' : 'Inactive'}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Gateway:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    {selectedNode.isGateway ? 'Yes' : 'No'}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Neighbors:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    {selectedNode.neighbors.length}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">Position:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    ({selectedNode.position.x.toFixed(0)}, {selectedNode.position.y.toFixed(0)})
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">TX Power:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    {selectedNode.transmissionPower} dBm
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">RX Sensitivity:</span>
+                  <span className="text-sm font-medium text-gray-900 dark:text-white">
+                    {selectedNode.receptionSensitivity} dBm
+                  </span>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </main>
     </div>

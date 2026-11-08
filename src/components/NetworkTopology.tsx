@@ -44,10 +44,10 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
       graphRef.current.d3Force('link').distance(80);
       graphRef.current.d3Force('center', null); // Remove center force to prevent centering issues
       
-      // Set initial zoom after graph is initialized
+      // Set initial zoom after graph is initialized - updated
       setTimeout(() => {
         if (graphRef.current) {
-          graphRef.current.zoom(2.2);
+          graphRef.current.zoom(0.7);
         }
       }, 100);
     }

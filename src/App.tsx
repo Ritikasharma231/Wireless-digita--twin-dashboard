@@ -324,7 +324,7 @@ function App() {
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
                     width={1200}
-                    height={400}
+                    height={150}
                   />
                 </div>
               ) : (

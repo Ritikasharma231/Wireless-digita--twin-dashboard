@@ -324,7 +324,7 @@ function App() {
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
                     width={1200}
-                    height={500}
+                    height={400}
                   />
                 </div>
               ) : (
@@ -336,7 +336,7 @@ function App() {
                         topology={physicalTopology}
                         onNodeClick={setSelectedNode}
                         width={600}
-                        height={350}
+                        height={280}
                       />
                     </div>
                   </div>
@@ -347,7 +347,7 @@ function App() {
                         topology={virtualTopology}
                         onNodeClick={setSelectedNode}
                         width={600}
-                        height={350}
+                        height={280}
                       />
                     </div>
                   </div>

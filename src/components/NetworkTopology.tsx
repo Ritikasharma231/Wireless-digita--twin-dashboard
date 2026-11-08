@@ -47,7 +47,7 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
       // Set initial zoom after graph is initialized
       setTimeout(() => {
         if (graphRef.current) {
-          graphRef.current.zoom(1.6);
+          graphRef.current.zoom(2.2);
         }
       }, 100);
     }

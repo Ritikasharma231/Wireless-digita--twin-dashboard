@@ -28,6 +28,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def root():
+    """Root endpoint"""
+    return {
+        "message": "Wireless Digital Twin API",
+        "status": "running",
+        "version": "simplified"
+    }
+
 # Simple in-memory storage for demo purposes
 agents: Dict[str, Dict[str, Any]] = {}
 transitions: Dict[str, list] = {}

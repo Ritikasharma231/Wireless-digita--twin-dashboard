@@ -1,0 +1,27 @@
+# Backend Requirements for Wireless Digital Twin
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+pydantic>=2.5.0
+
+# Machine Learning
+torch>=2.10.0
+torch-geometric>=2.4.0
+numpy>=1.26.0
+scipy>=1.11.0
+
+# RL Libraries
+stable-baselines3>=2.3.0
+gymnasium>=0.29.1
+
+# Data Processing
+pandas>=2.1.0
+redis>=5.0.0
+
+# MQTT
+paho-mqtt>=1.6.1
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic-settings>=2.1.0

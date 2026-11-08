@@ -313,8 +313,8 @@ function App() {
             </div>
 
             {/* Network Topology Visualization */}
-            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
-              <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-4 border border-white/30 dark:border-slate-700/30">
+              <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-4">
                 {activeTab === 'physical' ? 'Physical Network Topology' : 
                  activeTab === 'virtual' ? 'Virtual Twin Topology' : 'Network Comparison'}
               </h2>
@@ -324,11 +324,11 @@ function App() {
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
                     width={1200}
-                    height={150}
+                    height={400}
                   />
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="min-w-0">
                     <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Physical</h3>
                     <div className="w-full overflow-hidden rounded-2xl shadow-inner border-2 border-gray-200 dark:border-slate-700">

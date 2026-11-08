@@ -39,24 +39,18 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
 
   useEffect(() => {
     if (graphRef.current) {
-      // Adjust forces for better containment and centering
-      graphRef.current.d3Force('charge').strength(-200);
+      // Use default forces for natural graph layout
+      graphRef.current.d3Force('charge').strength(-300);
       graphRef.current.d3Force('link').distance(100);
-      // Add centering force to keep graph centered
-      graphRef.current.d3Force('center', {
-        x: width / 2,
-        y: height / 2,
-        strength: 0.1
-      });
       
-      // Set initial zoom after graph is initialized - updated
+      // Set moderate zoom to show graph properly
       setTimeout(() => {
         if (graphRef.current) {
-          graphRef.current.zoom(1.8);
+          graphRef.current.zoom(1.0);
         }
       }, 100);
     }
-  }, [width, height]);
+  }, []);
 
   const getNodeColor = (node: any): string => {
     if (!node.isActive) return '#6b7280';

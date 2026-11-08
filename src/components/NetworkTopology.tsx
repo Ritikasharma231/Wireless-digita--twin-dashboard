@@ -83,9 +83,9 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
         enablePanInteraction={true}
         d3AlphaDecay={0.02}
         d3VelocityDecay={0.1}
-        zoom={2}
-        minZoom={1}
-        maxZoom={4}
+        zoom={1.1}
+        minZoom={0.8}
+        maxZoom={2}
         nodeCanvasObject={(node, ctx, globalScale) => {
           const size = getNodeSize(node) / globalScale;
           ctx.beginPath();

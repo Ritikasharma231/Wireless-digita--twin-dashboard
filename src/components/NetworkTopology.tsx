@@ -43,6 +43,13 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
       graphRef.current.d3Force('charge').strength(-150);
       graphRef.current.d3Force('link').distance(80);
       graphRef.current.d3Force('center', null); // Remove center force to prevent centering issues
+      
+      // Set initial zoom after graph is initialized
+      setTimeout(() => {
+        if (graphRef.current) {
+          graphRef.current.zoom(1.3);
+        }
+      }, 100);
     }
   }, []);
 
@@ -83,9 +90,6 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
         enablePanInteraction={true}
         d3AlphaDecay={0.02}
         d3VelocityDecay={0.1}
-        zoom={1.3}
-        minZoom={0.9}
-        maxZoom={2.5}
         nodeCanvasObject={(node, ctx, globalScale) => {
           const size = getNodeSize(node) / globalScale;
           ctx.beginPath();

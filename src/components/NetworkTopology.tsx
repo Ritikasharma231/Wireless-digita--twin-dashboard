@@ -43,10 +43,10 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
       graphRef.current.d3Force('charge').strength(-300);
       graphRef.current.d3Force('link').distance(100);
       
-      // Set very low zoom to show entire graph
+      // Set zoom to minimum to show entire graph
       setTimeout(() => {
         if (graphRef.current) {
-          graphRef.current.zoom(0.3);
+          graphRef.current.zoom(0.1);
         }
       }, 100);
     }

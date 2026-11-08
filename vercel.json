@@ -5,6 +5,6 @@
   "installCommand": "npm install",
   "framework": "vite",
   "env": {
-    "VITE_API_URL": "@backend-url"
+    "VITE_API_URL": "https://wireless-digital-twin-backend.onrender.com"
   }
 }

@@ -72,7 +72,7 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
   };
 
   return (
-    <div className="network-topology w-full h-full min-h-[500px] relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+    <div className="network-topology w-full h-full min-h-[600px] relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900">
       <ForceGraph2D
         ref={graphRef}
         graphData={{ nodes, links }}
@@ -83,9 +83,9 @@ export const NetworkTopologyComponent: React.FC<NetworkTopologyProps> = ({
         enablePanInteraction={true}
         d3AlphaDecay={0.02}
         d3VelocityDecay={0.1}
-        zoom={1.2}
-        minZoom={0.8}
-        maxZoom={3}
+        zoom={2}
+        minZoom={1}
+        maxZoom={4}
         nodeCanvasObject={(node, ctx, globalScale) => {
           const size = getNodeSize(node) / globalScale;
           ctx.beginPath();

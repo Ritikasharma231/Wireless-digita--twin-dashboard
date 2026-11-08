@@ -237,31 +237,31 @@ function App() {
   const currentTopology = activeTab === 'physical' ? physicalTopology : virtualTopology;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 dark:from-slate-950 via-blue-950 to-indigo-950">
       {/* Header */}
-      <header className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg shadow-xl border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
+      <header className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl border-b border-white/20 dark:border-slate-700/20 sticky top-0 z-50">
+        <div className="container mx-auto px-8 py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 rounded-xl shadow-lg">
-                <GitCompare className="w-6 h-6 text-white" />
+            <div className="flex items-center gap-4">
+              <div className="p-4 bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 rounded-2xl shadow-2xl shadow-purple-500/30">
+                <GitCompare className="w-7 h-7 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="text-3xl font-extrabold bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent tracking-tight">
                   Wireless Digital Twin
                 </h1>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-medium tracking-wide uppercase">
                   Adhoc Wireless Sensor Network Simulation
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className={`px-4 py-2 rounded-full text-sm font-semibold shadow-md ${
+            <div className="flex items-center gap-3">
+              <span className={`px-5 py-2.5 rounded-full text-sm font-bold shadow-lg tracking-wide ${
                 isRunning 
-                  ? 'bg-gradient-to-r from-green-400 to-emerald-500 text-white' 
-                  : 'bg-gradient-to-r from-gray-400 to-gray-500 text-white'
+                  ? 'bg-gradient-to-r from-emerald-400 to-green-500 text-white shadow-emerald-500/40' 
+                  : 'bg-gradient-to-r from-slate-400 to-gray-500 text-white shadow-slate-500/40'
               }`}>
-                {isRunning ? 'Running' : 'Stopped'}
+                {isRunning ? '● Running' : '○ Stopped'}
               </span>
             </div>
           </div>
@@ -269,85 +269,85 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 gap-8">
+      <main className="container mx-auto px-8 py-10">
+        <div className="grid grid-cols-1 gap-10">
           {/* Network Topology Section - Full Width */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             {/* Tab Navigation */}
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-              <div className="flex gap-3">
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+              <div className="flex gap-4">
                 <button
                   onClick={() => setActiveTab('physical')}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg ${
+                  className={`px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 ${
                     activeTab === 'physical'
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-blue-500/50'
-                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-blue-500/50 ring-4 ring-blue-500/30'
+                      : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 border-2 border-gray-200 dark:border-slate-600'
                   }`}
                 >
-                  <Activity className="w-5 h-5 inline mr-2" />
+                  <Activity className="w-6 h-6 inline mr-3" />
                   Physical Network
                 </button>
                 <button
                   onClick={() => setActiveTab('virtual')}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg ${
+                  className={`px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 ${
                     activeTab === 'virtual'
-                      ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-purple-500/50'
-                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
+                      ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-purple-500/50 ring-4 ring-purple-500/30'
+                      : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 border-2 border-gray-200 dark:border-slate-600'
                   }`}
                 >
-                  <GitCompare className="w-5 h-5 inline mr-2" />
+                  <GitCompare className="w-6 h-6 inline mr-3" />
                   Virtual Twin
                 </button>
                 <button
                   onClick={() => setActiveTab('comparison')}
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md hover:shadow-lg ${
+                  className={`px-8 py-4 rounded-2xl font-bold transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 ${
                     activeTab === 'comparison'
-                      ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-green-500/50'
-                      : 'bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 border border-gray-200 dark:border-gray-600'
+                      ? 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-emerald-500/50 ring-4 ring-emerald-500/30'
+                      : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 border-2 border-gray-200 dark:border-slate-600'
                   }`}
                 >
-                  <BarChart3 className="w-5 h-5 inline mr-2" />
+                  <BarChart3 className="w-6 h-6 inline mr-3" />
                   Comparison
                 </button>
               </div>
             </div>
 
             {/* Network Topology Visualization */}
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-              <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+              <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
                 {activeTab === 'physical' ? 'Physical Network Topology' : 
                  activeTab === 'virtual' ? 'Virtual Twin Topology' : 'Network Comparison'}
               </h2>
               {activeTab !== 'comparison' ? (
-                <div className="w-full overflow-hidden rounded-xl shadow-inner">
+                <div className="w-full overflow-hidden rounded-2xl shadow-inner">
                   <NetworkTopologyComponent
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
                     width={1200}
-                    height={600}
+                    height={650}
                   />
                 </div>
               ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="min-w-0">
-                    <h3 className="text-base font-semibold text-gray-700 dark:text-gray-300 mb-3">Physical</h3>
-                    <div className="w-full overflow-hidden rounded-xl shadow-inner border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Physical</h3>
+                    <div className="w-full overflow-hidden rounded-2xl shadow-inner border-2 border-gray-200 dark:border-slate-700">
                       <NetworkTopologyComponent
                         topology={physicalTopology}
                         onNodeClick={setSelectedNode}
                         width={600}
-                        height={400}
+                        height={450}
                       />
                     </div>
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-base font-semibold text-gray-700 dark:text-gray-300 mb-3">Virtual</h3>
-                    <div className="w-full overflow-hidden rounded-xl shadow-inner border border-gray-200 dark:border-gray-700">
+                    <h3 className="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Virtual</h3>
+                    <div className="w-full overflow-hidden rounded-2xl shadow-inner border-2 border-gray-200 dark:border-slate-700">
                       <NetworkTopologyComponent
                         topology={virtualTopology}
                         onNodeClick={setSelectedNode}
                         width={600}
-                        height={400}
+                        height={450}
                       />
                     </div>
                   </div>
@@ -357,7 +357,7 @@ function App() {
           </div>
 
           {/* Control Panel - Full Width at Bottom */}
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
             <ControlPanel
               config={config}
               onConfigChange={handleConfigChange}
@@ -375,24 +375,24 @@ function App() {
           </div>
 
           {/* Metrics Dashboard - Full Width */}
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+            <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
               Network Metrics
             </h2>
             <MetricsDashboard metrics={currentTopology.metrics} syncStats={syncStats} />
           </div>
 
           {/* Event Log - Full Width */}
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+            <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
               Event Log
             </h2>
             <EventLog events={digitalTwin.getPhysicalSimulation().getEventLog()} />
           </div>
 
           {/* What-If Scenarios - Full Width */}
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+            <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
               What-If Scenarios
             </h2>
             <WhatIfScenario
@@ -402,8 +402,8 @@ function App() {
           </div>
 
           {/* Export Panel - Full Width */}
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+            <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
               Export Data
             </h2>
             <ExportPanel
@@ -416,52 +416,52 @@ function App() {
 
           {/* Selected Node Details - Full Width */}
           {selectedNode && (
-            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-gray-200/50 dark:border-gray-700/50">
-              <h2 className="text-xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-200 bg-clip-text text-transparent mb-6">
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/30 dark:border-slate-700/30">
+              <h2 className="text-2xl font-extrabold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-200 bg-clip-text text-transparent mb-8">
                 Node Details: {selectedNode.id}
               </h2>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Energy:</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-blue-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">Energy</span>
+                  <span className="text-xl font-bold text-gray-900 dark:text-white mt-2">
                     {selectedNode.energy.toFixed(1)}%
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Status:</span>
-                  <span className={`text-sm font-bold ${
+                <div className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-green-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">Status</span>
+                  <span className={`text-xl font-bold mt-2 ${
                     selectedNode.isActive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
                   }`}>
                     {selectedNode.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Gateway:</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">
+                <div className="p-4 bg-gradient-to-br from-purple-50 to-violet-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-purple-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">Gateway</span>
+                  <span className="text-xl font-bold text-gray-900 dark:text-white mt-2">
                     {selectedNode.isGateway ? 'Yes' : 'No'}
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Neighbors:</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">
+                <div className="p-4 bg-gradient-to-br from-orange-50 to-amber-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-orange-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">Neighbors</span>
+                  <span className="text-xl font-bold text-gray-900 dark:text-white mt-2">
                     {selectedNode.neighbors.length}
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">Position:</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">
+                <div className="p-4 bg-gradient-to-br from-cyan-50 to-sky-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-cyan-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">Position</span>
+                  <span className="text-xl font-bold text-gray-900 dark:text-white mt-2">
                     ({selectedNode.position.x.toFixed(0)}, {selectedNode.position.y.toFixed(0)})
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">TX Power:</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">
+                <div className="p-4 bg-gradient-to-br from-pink-50 to-rose-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-pink-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">TX Power</span>
+                  <span className="text-xl font-bold text-gray-900 dark:text-white mt-2">
                     {selectedNode.transmissionPower} dBm
                   </span>
                 </div>
-                <div className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-                  <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">RX Sensitivity:</span>
-                  <span className="text-sm font-bold text-gray-900 dark:text-white">
+                <div className="p-4 bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-slate-800 dark:to-slate-700 rounded-xl border border-teal-200 dark:border-slate-600">
+                  <span className="text-xs text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wider">RX Sensitivity</span>
+                  <span className="text-xl font-bold text-gray-900 dark:text-white mt-2">
                     {selectedNode.receptionSensitivity} dBm
                   </span>
                 </div>

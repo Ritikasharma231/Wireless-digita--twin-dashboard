@@ -79,8 +79,21 @@ function App() {
       digitalTwin.getPhysicalSimulation().addNode(node);
     });
 
+    // Sync to virtual to ensure both have the same nodes
     digitalTwin.syncPhysicalToVirtual();
-    setPhysicalTopology(digitalTwin.getPhysicalSimulation().getTopology());
+    
+    // Get topologies and ensure they have nodes
+    const physTopo = digitalTwin.getPhysicalSimulation().getTopology();
+    const virtTopo = digitalTwin.getVirtualSimulation().getTopology();
+    
+    // If virtual is empty, add nodes manually
+    if (virtTopo.nodes.size === 0) {
+      physTopo.nodes.forEach((node) => {
+        digitalTwin.getVirtualSimulation().addNode(node);
+      });
+    }
+    
+    setPhysicalTopology(physTopo);
     setVirtualTopology(digitalTwin.getVirtualSimulation().getTopology());
     setSyncStats(digitalTwin.getSyncStats());
   }, [digitalTwin]);

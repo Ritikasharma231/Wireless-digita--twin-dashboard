@@ -11,13 +11,13 @@ import { Activity, GitCompare, BarChart3 } from 'lucide-react';
 
 function App() {
   const [config, setConfig] = useState<SimulationConfig>({
-    updateInterval: 1000,
+    updateInterval: 5000,
     maxHops: 10,
     routingProtocol: 'AODV',
     mobilityEnabled: false,
     energyDepletionEnabled: false,
     packetGenerationRate: 1,
-    signalPropagationModel: 'two-ray',
+    signalPropagationModel: 'free-space',
     shadowingVariance: 4.0,
     rlEnabled: false,
     rlMode: 'inference',
@@ -63,16 +63,16 @@ function App() {
   }, [metricsHistory]);
 
   useEffect(() => {
-    // Initialize with some default nodes
+    // Initialize with some default nodes (closer positions for better connectivity)
     const initialNodes: Array<Partial<Node> & { id: string }> = [
       { id: 'node-1', position: { x: 100, y: 100 }, isGateway: true },
-      { id: 'node-2', position: { x: 200, y: 150 } },
-      { id: 'node-3', position: { x: 150, y: 250 } },
-      { id: 'node-4', position: { x: 300, y: 200 } },
-      { id: 'node-5', position: { x: 250, y: 300 } },
-      { id: 'node-6', position: { x: 400, y: 150 } },
-      { id: 'node-7', position: { x: 350, y: 350 } },
-      { id: 'node-8', position: { x: 500, y: 250 } },
+      { id: 'node-2', position: { x: 200, y: 100 } },
+      { id: 'node-3', position: { x: 300, y: 100 } },
+      { id: 'node-4', position: { x: 400, y: 100 } },
+      { id: 'node-5', position: { x: 150, y: 200 } },
+      { id: 'node-6', position: { x: 250, y: 200 } },
+      { id: 'node-7', position: { x: 350, y: 200 } },
+      { id: 'node-8', position: { x: 450, y: 200 } },
     ];
 
     initialNodes.forEach(node => {
@@ -112,10 +112,14 @@ function App() {
         setVirtualTopology(digitalTwin.getVirtualSimulation().getTopology());
         setSyncStats(digitalTwin.getSyncStats());
 
-        // Capture metrics for history (every 5 steps to avoid too much data)
+        // Capture metrics for history (every 20 steps to reduce updates)
         stepCount++;
-        if (stepCount % 5 === 0) {
-          setMetricsHistory(prev => [...prev, { ...newPhysicalTopology.metrics }]);
+        if (stepCount % 20 === 0) {
+          setMetricsHistory(prev => {
+            const newHistory = [...prev, { ...newPhysicalTopology.metrics }];
+            // Keep only last 20 entries to prevent memory issues
+            return newHistory.slice(-20);
+          });
         }
 
         // Generate traffic based on packet generation rate
@@ -145,7 +149,7 @@ function App() {
         clearInterval(interval);
       }
     };
-  }, [isRunning, config, digitalTwin]);
+  }, [isRunning, config.updateInterval, config.packetGenerationRate, digitalTwin]);
 
   const handleConfigChange = useCallback((newConfig: Partial<SimulationConfig>) => {
     setConfig(prev => ({ ...prev, ...newConfig }));
@@ -215,7 +219,7 @@ function App() {
     }
   }, [digitalTwin]);
 
-  // Update RL stats periodically to show current episode reward
+  // Update RL stats periodically to show current episode reward (much less frequent)
   useEffect(() => {
     if (isRunning && config.rlEnabled) {
       const interval = setInterval(() => {
@@ -228,7 +232,7 @@ function App() {
           stats.episodeStepCount = simStepCount;
           setRlAgentStats({ ...stats });
         }
-      }, 1000);
+      }, 5000); // Increased from 2000ms to 5000ms
 
       return () => clearInterval(interval);
     }
@@ -323,8 +327,8 @@ function App() {
                   <NetworkTopologyComponent
                     topology={currentTopology}
                     onNodeClick={setSelectedNode}
-                    width={1200}
-                    height={400}
+                    width={800}
+                    height={300}
                   />
                 </div>
               ) : (
@@ -335,8 +339,8 @@ function App() {
                       <NetworkTopologyComponent
                         topology={physicalTopology}
                         onNodeClick={setSelectedNode}
-                        width={600}
-                        height={280}
+                        width={400}
+                        height={200}
                       />
                     </div>
                   </div>
@@ -346,8 +350,8 @@ function App() {
                       <NetworkTopologyComponent
                         topology={virtualTopology}
                         onNodeClick={setSelectedNode}
-                        width={600}
-                        height={280}
+                        width={400}
+                        height={200}
                       />
                     </div>
                   </div>
